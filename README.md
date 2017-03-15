@@ -48,6 +48,38 @@ Then we need to append the two data sets together.  We can do that using the rbi
 both = rbind(mccsc5, rbbcsc5); both
 
 ```
+---
+title: "Test"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Need to create a new variable that is a one then one for new variable
+```{r}
+both.qual5 = read.csv("both.qual4.csv", header = TRUE, na.strings = c("", "NA"))
+```
+
+
+# Then do na.omit to get rid of those did not receive a one
+# Theme Time, Professional.Development , More.staff.support
+```{r}
+both.qual6 = both.qual5[c("Time", "Professional.Development", "More.staff.support")]
+head(both.qual6)
+```
+
+# Now I need create a variable goes through and creates a one in a new variable for any variable that has a one
+# Create a new variable that is the sum of the three variables.  Then recode that variable if the variable is greater than zero, than it will be recoded as one
+```{r}
+index = rowSums(both.qual6, na.rm = TRUE)
+head(index)
+both.qual7 = cbind(both.qual6, index)
+```
+
+# Now I want to select only those values that contain 
+both.qual7
 
 
 
